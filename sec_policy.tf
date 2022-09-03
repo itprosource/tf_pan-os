@@ -1,15 +1,15 @@
-resource "panos_security_policy" "test" {
+resource "panos_security_policy" "security_policy" {
     rule {
-        name = "test"
-        source_zones = ["trust"]
-        source_addresses = ["169.254.42.14"]
-        source_users = ["any"]
-        destination_zones = ["trust"]
-        destination_addresses = ["169.254.42.14"]
-        applications = ["icmp"]
-        services = ["any"]
-        categories = ["any"]
-        action = "allow"
+        name = var.name
+        source_zones = var.source_zones
+        source_addresses = var.source_addresses
+        source_users = var.source_users
+        destination_zones = var.destination_zones
+        destination_addresses = var.destination_addresses
+        applications = var.applications
+        services = var.services
+        categories = var.categories
+        action = var.action
     }
 }
 
