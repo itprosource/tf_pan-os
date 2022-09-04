@@ -1,15 +1,19 @@
 resource "panos_security_policy" "security_policy" {
-    rule {
-        name = var.name
-        source_zones = var.source_zones
-        source_addresses = var.source_addresses
-        source_users = var.source_users
-        destination_zones = var.destination_zones
-        destination_addresses = var.destination_addresses
-        applications = var.applications
-        services = var.services
-        categories = var.categories
-        action = var.action
+
+    dynamic rule {
+        for_each = var.rules
+        content {
+            name = rule.value["name"]
+            source_zones = rule.value["source_zones"]
+            source_addresses = rule.value["source_addresses"]
+            source_users = rule.value["source_users"]
+            destination_zones = rule.value["destination_zones"]
+            destination_addresses = rule.value["destination_addresses"]
+            applications = rule.value["applications"]
+            services = rule.value["services"]
+            categories = rule.value["categories"]
+            action = rule.value["action"]
+        }
     }
 }
 
